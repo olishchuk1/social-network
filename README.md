@@ -10,7 +10,7 @@ Social network using MongoDB.
 
 1. Create a database that will store information about social network users and a certain connection between them (friends, follower, subscriber, etc.).
 
-2. Minimum set of fields to describe the user - E-mail, Password, FirstName, LastName, Interests (arbitrary array of strings).
+2. A minimum set of fields to describe the user - E-mail, Password, FirstName, LastName, Interests (arbitrary array of strings).
 
 3. Users can write posts and write comments to their own or other people's posts. You can also respond to a post or comment (like or other reaction). You need to store posts and comments in the database.
 
