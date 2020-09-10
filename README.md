@@ -4,7 +4,7 @@
 
 <!--**Deadline: 30 вересня 2020**-->
 
-Social network using MongoDB.
+Social network using Python Django Framework and MongoDB.
 
 ### General requirements:
 
