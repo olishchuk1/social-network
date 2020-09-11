@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'bookmarks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'bookmarksdb',
+        'NAME': 'bookmarks-db',
     }
 }
 
