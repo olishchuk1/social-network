@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'images.apps.ImagesConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,8 +134,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # social auth settings
-SOCIAL_AUTH_FACEBOOK_KEY = ''  # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = ''  # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = '697798477477247'  # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'e0e90057e53539f0509176a9a02bc45d'  # Facebook App Secret
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 SOCIAL_AUTH_TWITTER_KEY = ''  # Twitter Consumer Key
