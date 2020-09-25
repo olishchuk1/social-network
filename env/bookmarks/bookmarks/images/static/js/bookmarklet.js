@@ -1,6 +1,6 @@
 (function () {
     var jquery_version = '3.3.1';
-    var site_url = 'https://3f6ad53c.ngrok.io/';
+    var site_url = 'https://d1e358bc356c.ngrok.io';
     var static_url = site_url + 'static/';
     var min_width = 100;
     var min_height = 100;
@@ -68,11 +68,11 @@
                     window.setTimeout(arguments.callee, 250)
                 } else {
                     // Too much attempts to load, send error
-                    alert('An error ocurred while loading jQuery')
+                    alert('An error occurred while loading jQuery')
                 }
             } else {
                 bookmarklet();
             }
         })();
     }
-})()
+})();
