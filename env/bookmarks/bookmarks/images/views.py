@@ -1,3 +1,4 @@
+from common.decorators import ajax_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -7,7 +8,6 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import ImageCreateForm
 from .models import Image
-from common.decorators import ajax_required
 
 
 # Create your views here.
@@ -37,6 +37,7 @@ def image_create(request):
                   {'section': 'images',
                    'form': form})
 
+
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
     return render(request,
@@ -58,10 +59,10 @@ def image_like(request):
                 image.users_like.add(request.user)
             else:
                 image.users_like.remove(request.user)
-            return JsonResponse({'status':'ok'})
+            return JsonResponse({'status': 'ok'})
         except:
             pass
-    return JsonResponse({'status':'ko'})
+    return JsonResponse({'status': 'ko'})
 
 
 @login_required
@@ -87,4 +88,4 @@ def image_list(request):
                       {'section': 'images', 'images': images})
     return render(request,
                   'images/image/list.html',
-                   {'section': 'images', 'images': images})
+                  {'section': 'images', 'images': images})

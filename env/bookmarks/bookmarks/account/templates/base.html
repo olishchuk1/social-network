@@ -3,34 +3,34 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
-  <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
   <div id="header">
     <span class="logo">Bookmarks</span>
     {% if request.user.is_authenticated %}
-      <ul class="menu">
-        <li {% if section == "dashboard" %}class="selected"{% endif %}>
-          <a href="{% url "dashboard" %}">My dashboard</a>
-        </li>
-        <li {% if section == "images" %}class="selected"{% endif %}>
-          <a href="{% url "images:list" %}">Images</a>
-        </li>
-        <li {% if section == "people" %}class="selected"{% endif %}>
-          <a href="">People</a>
-        </li>
-      </ul>
+    <ul class="menu">
+      <li {% if section == "dashboard" %}class="selected"{% endif %}>
+        <a href="{% url "dashboard" %}">My dashboard</a>
+      </li>
+      <li {% if section == "images" %}class="selected"{% endif %}>
+        <a href="{% url "images:list" %}">Images</a>
+      </li>
+      <li {% if section == "people" %}class="selected"{% endif %}>
+        <a href="#">People</a>
+      </li>
+    </ul>
+  {% endif %}
+  <span class="user">
+    {% if request.user.is_authenticated %}
+      Hello {{ request.user.first_name }},
+      <a href="{% url "logout" %}">Logout</a>
+    {% else %}
+      <a href="{% url "login" %}">Log-in</a>
     {% endif %}
-
-    <span class="user">
-      {% if request.user.is_authenticated %}
-        Hello {{ request.user.first_name }},
-        <a href="{% url "logout" %}">Logout</a>
-      {% else %}
-        <a href="{% url "login" %}">Log-in</a>
-      {% endif %}
-    </span>
+  </span>
   </div>
+
   {% if messages %}
     <ul class="messages">
       {% for message in messages %}
@@ -41,12 +41,14 @@
       {% endfor %}
     </ul>
   {% endif %}
+
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
   <script>
     var csrftoken = Cookies.get('csrftoken');
     function csrfSafeMethod(method) {
@@ -60,10 +62,12 @@
         }
       }
     });
+
     $(document).ready(function(){
       {% block domready %}
       {% endblock %}
-       });
+    });
   </script>
+
 </body>
 </html>
