@@ -11,7 +11,7 @@ from common.decorators import ajax_required
 # from actions.models import Action
 from .models import Profile, Contact
 from .forms import LoginForm, UserRegistrationForm, \
-                    UserEditForm, ProfileEditForm
+    UserEditForm, ProfileEditForm
 
 
 def user_login(request):
@@ -25,7 +25,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated '\
+                    return HttpResponse('Authenticated ' \
                                         'successfully')
                 else:
                     return HttpResponse('Disabled account')
@@ -85,6 +85,7 @@ def user_list(request):
                   {'section': 'people',
                    'users': users})
 
+
 @login_required
 def user_detail(request, username):
     user = get_object_or_404(User,
@@ -121,6 +122,7 @@ def edit(request):
                   {'user_form': user_form,
                    'profile_form': profile_form})
 
+
 @ajax_required
 @require_POST
 @login_required
@@ -137,7 +139,7 @@ def user_follow(request):
             else:
                 Contact.objects.filter(user_from=request.user,
                                        user_to=user).delete()
-            return JsonResponse({'status':'ok'})
+            return JsonResponse({'status': 'ok'})
         except User.DoesNotExist:
-            return JsonResponse({'status':'error'})
-    return JsonResponse({'status':'error'})
+            return JsonResponse({'status': 'error'})
+    return JsonResponse({'status': 'error'})

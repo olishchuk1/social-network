@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     # 'django_extensions',
-    # 'easy_thumbnails',
+    #'easy_thumbnails',
     'images.apps.ImagesConfig',
-#    'actions.apps.ActionsConfig',
+    'actions.apps.ActionsConfig',
 ]
 
 ABSOLUTE_URL_OVERRIDES = {
@@ -86,6 +86,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'bookmarks-db',
+        'HOST': 'mongodb://localhost:27017/bookmarks-db'
     }
 }
 
