@@ -1,16 +1,17 @@
-from common.decorators import ajax_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, \
+                                  PageNotAnInteger
+from common.decorators import ajax_required
 from .forms import ImageCreateForm
 from .models import Image
 
 
-# Create your views here.
 @login_required
 def image_create(request):
     if request.method == 'POST':
@@ -59,16 +60,16 @@ def image_like(request):
                 image.users_like.add(request.user)
             else:
                 image.users_like.remove(request.user)
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({'status':'ok'})
         except:
             pass
-    return JsonResponse({'status': 'ko'})
+    return JsonResponse({'status':'error'})
 
 
 @login_required
 def image_list(request):
     images = Image.objects.all()
-    paginator = Paginator(images, 8)
+    paginator = Paginator(images, 1)
     page = request.GET.get('page')
     try:
         images = paginator.page(page)
@@ -88,4 +89,4 @@ def image_list(request):
                       {'section': 'images', 'images': images})
     return render(request,
                   'images/image/list.html',
-                  {'section': 'images', 'images': images})
+                   {'section': 'images', 'images': images})
