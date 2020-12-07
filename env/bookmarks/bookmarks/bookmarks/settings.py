@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.urls import reverse_lazy
+from neo4j import GraphDatabase, basic_auth
+from py2neo import Graph
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -90,6 +92,9 @@ DATABASES = {
     }
 }
 
+URI = "bolt://localhost:7879"
+
+NEO4J = Graph(password='admin@123')
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

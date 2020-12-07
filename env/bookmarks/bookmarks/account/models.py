@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from bookmarks.bookmarks.settings import NEO4J
+from neobolt.exceptions import DatabaseError
+from py2neo import Node
 
 
 class Profile(models.Model):
@@ -33,6 +36,21 @@ class Contact(models.Model):
 user_model = get_user_model()
 user_model.add_to_class('following',
                         models.ManyToManyField('self',
-                                                through=Contact,
-                                                related_name='followers',
-                                                symmetrical=False))
+                                               through=Contact,
+                                               related_name='followers',
+                                               symmetrical=False))
+
+
+def create_neo_user(username):
+    """
+    add user to neo4j
+    :param username:
+    :return:
+    """
+    found = NEO4J.run("MATCH (u:User {username:$username}) "
+                      "RETURN u", username=username)
+    if found.forward():
+        return None
+    user = NEO4J.run("CREATE (u:User {username:$username}) "
+                     "RETURN u", {'username': username}).current
+    return user
